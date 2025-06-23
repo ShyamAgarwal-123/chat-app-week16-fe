@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "vite preview --port 5000",
+    "predeploy": "npm run build",
+    "deploy": "echo 'Deploy with your preferred static host (e.g., Vercel, Netlify, or GitHub Pages)'"
   },
   "dependencies": {
     "react": "^19.1.0",
