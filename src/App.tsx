@@ -45,7 +45,7 @@ function App() {
   };
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8081");
+    const ws = new WebSocket("https://chat-app-week16.onrender.com");
     setSocket(ws);
 
     ws.onmessage = (ev) => {
