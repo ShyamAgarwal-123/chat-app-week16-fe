@@ -45,7 +45,7 @@ function App() {
   };
 
   useEffect(() => {
-    const ws = new WebSocket("https://chat-app-week16-fe-cnxp.vercel.app");
+    const ws = new WebSocket("https://chat-app-week16.onrender.com");
     setSocket(ws);
 
     ws.onmessage = (ev) => {
