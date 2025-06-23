@@ -38,14 +38,14 @@ function App() {
           message: messageRef.current.value,
         },
       };
+
       socket?.send(JSON.stringify(ms));
       setMyMessages((prev) => [...prev, messageRef.current!.value]);
-      messageRef.current.value = "";
     }
   };
 
   useEffect(() => {
-    const ws = new WebSocket("https://chat-app-week16.onrender.com");
+    const ws = new WebSocket("ws://localhost:8080");
     setSocket(ws);
 
     ws.onmessage = (ev) => {
@@ -70,27 +70,26 @@ function App() {
       };
       socket?.send(JSON.stringify(message));
     }
+    return () => {
+      setMyMessages([]);
+      setPersonMessages([]);
+    };
   }, [room]);
 
   return (
     <>
       <div>
         <input type="text" ref={roomRef} />
-        <button
-          onClick={joinRoom}
-          disabled={room === roomRef?.current?.value ? true : false}
-        >
-          Join
-        </button>
+        <button onClick={joinRoom}>Join</button>
       </div>
       <div>
-        {room ? (
+        {!room ? (
+          <h1>Join A Room</h1>
+        ) : (
           <div>
             <h1>{room}</h1> <input type="text" ref={messageRef} />
             <button onClick={sendMessage}>send</button>
           </div>
-        ) : (
-          <h1>Join A Room</h1>
         )}
       </div>
       <div>
