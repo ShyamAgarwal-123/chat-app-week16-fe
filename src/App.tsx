@@ -45,7 +45,7 @@ function App() {
   };
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
+    const ws = new WebSocket("https://chat-app-week16-fe-cnxp.vercel.app");
     setSocket(ws);
 
     ws.onmessage = (ev) => {
